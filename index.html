@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+
+
+
+
+
+
+// API source
+
+  $.ajax({
+  url:"https://www.kimonolabs.com/api/47crghz2?apikey=v18zG9P1n3GnDD9ka5O1F0YXy65OtJz3",
+  crossDomain: true,
+  dataType: "jsonp",
+  success: function (response) {
+    var data = response.results.collection1;
+    data.reverse();
+    console.log(data);
+
+
+// API function
+
+
+      var datadivide = data.length;
+
+    for (var i = 0; i<data.length; i++){
+
+      var animalnamestring = data[i].animal_name;
+      var animalname = animalnamestring.replace(/\s+/g, '');
+      var animalnumberstring = data[i].animal_number;
+      var animalnumber = animalnumberstring.replace(/,/g, '');
+
+
+// create eyechart tiers
+
+var tierlimitsarray = [
+  // limit1
+  500000,
+  // limit2
+  250000,
+  // limit3
+  // 100000,
+  // limit4
+  50000,
+  // limit5
+  10000,
+  // limit6
+  // 5000,
+  // limit7
+  1500,
+  // limit8
+  500,
+  // limit9
+  // 250,
+  // limit10
+  // 100,
+  // limit11
+  0
+];
+
+
+
+  for(var n = 1; n<tierlimitsarray.length; n++){
+    var nminus = n - 1;
+      if ((tierlimitsarray[n] <= animalnumber) && (animalnumber < tierlimitsarray[nminus])){
+        $("#tier" + n).append("<div class='animal'>" +animalnamestring+ " : " +animalnumberstring+ "</div>");
+      }
+      else{
+      }
+
+      };
+
+
+
+  console.log();
+
+
+};
+
+for(var j = 0; j<tierlimitsarray.length; j++){
+  var jminus = j - 1;
+
+  if(j==0){
+    $("#tier" + j).append("<div class='axiswrapper'><div class='axis axismarkertop'> billion +</div><div class='axis axismarkerbottom'>" + tierlimitsarray[j]+ "</div><div class='tiernumber'>" + j + "</div></div>");
+
+  }
+
+else{
+
+
+  $("#tier" + j).append("<div class='axiswrapper'><div class='axis axismarkertop'>" +tierlimitsarray[jminus]+ "</div><div class='axis axismarkerbottom'>" + tierlimitsarray[j]+ "</div><div class='tiernumber'>" + j + "</div></div>");
+}
+};
+
+    //Do something with the response
+  },
+  error: function (xhr, status) {
+    //handle errors
+  }
+});</script>
+<style>
+
+body{
+  margin:0;
+
+}
+
+.animal{
+  width:7.5vw;
+  float:left;
+}
+
+.tier{
+  width:80vw;
+  height:150px;
+  text-align:center;
+}
+
+.axiswrapper{
+  float:right;
+  width:80px;
+  margin-right: 15px;
+}
+
+.axis{
+  position:relative;
+  clear:right;
+  float:right;
+}
+
+.axismarkertop{
+
+  border-bottom: 1px solid black;
+}
+
+.tiernumber{
+  font-size:35px;
+  font-weight:bold;
+}
+
+.bar{
+  width:70vw;
+  height:25px;
+  /*margin-left:vw;
+  margin-right:15vw;*/
+  margin-bottom:100px;
+}
+
+.bar p {
+  display:none;
+  margin:0;
+  color:white;
+}
+
+.bar:hover p{
+  display:block;
+}
+#greenbar{
+  background-color:green;
+}
+
+#redbar{
+  background-color:red;
+}
+
+
+.pyramidwrapper{
+  text-align:center;
+  margin-top:10vh;
+  margin-left:10vw;
+  margin-right:10vw;
+  width:80vw;
+}
+
+#top, #bottom, #left, #right {
+    background: black;
+	position: fixed;
+	z-index:5000;
+	}
+	#left, #right {
+		top: 0; bottom: 0;
+		width: 10px;
+		}
+		#left { left: 0; }
+		#right { right: 0; }
+
+	#top, #bottom {
+		left: 0; right: 0;
+		height: 10px;
+		}
+		#top { top: 0; }
+		#bottom { bottom: 0; }
+
+</style>
+</head>
+
+<body>
+  <div id="header">
+
+  </div>
+  <div class="border" id="left"></div>
+  <div class="border" id="right"></div>
+  <div class="border" id="bottom"></div>
+  <div class="border" id="top"></div>
+
+  <div class="pyramidwrapper">
+    <div class ="tier" id="tier0"><div class="animal">Humans : 7,000,000,000</div></div>
+    <div class ="tier" id="tier1"></div>
+    <div class ="tier" id="tier2"></div>
+    <div class ="tier" id="tier3"></div>
+
+    <div class="bar" id="greenbar"><p>less than 10,000</p></div>
+
+    <div class ="tier" id="tier4"></div>
+    <div class ="tier" id="tier5"></div>
+
+    <div class="bar" id="redbar"><p>less than 500</p></div>
+
+    <div class ="tier" id="tier6"></div>
+    </div>
+</body>
+</html>
