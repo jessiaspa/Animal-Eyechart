@@ -36,64 +36,104 @@
 
 // create eyechart tiers
 
-var tierlimitsarray = [
-  // limit1
-  500000,
-  // limit2
-  250000,
-  // limit3
-  // 100000,
-  // limit4
-  50000,
-  // limit5
-  10000,
-  // limit6
-  // 5000,
-  // limit7
-  1500,
-  // limit8
-  500,
-  // limit9
-  // 250,
-  // limit10
-  // 100,
-  // limit11
-  0
-];
+      var tierlimitsarray = [
+        // limit1
+        500000,
+        // limit2
+        250000,
+        // limit3
+        // 100000,
+        // limit4
+        50000,
+        // limit5
+        10000,
+        // limit6
+        // 5000,
+        // limit7
+        1500,
+        // limit8
+        500,
+        // limit9
+        // 250,
+        // limit10
+        // 100,
+        // limit11
+        0
+      ];
 
 
 
-  for(var n = 1; n<tierlimitsarray.length; n++){
-    var nminus = n - 1;
-      if ((tierlimitsarray[n] <= animalnumber) && (animalnumber < tierlimitsarray[nminus])){
-        $("#tier" + n).append("<div class='animal'>" +animalnamestring+ " : " +animalnumberstring+ "</div>");
-      }
-      else{
-      }
+        for(var n = 1; n<tierlimitsarray.length; n++){
+          var nminus = n - 1;
+            if ((tierlimitsarray[n] <= animalnumber) && (animalnumber < tierlimitsarray[nminus])){
+              $("#tier" + n).append("<div class='animal'><img class='animal" + n + "' src='https://cdn1.iconfinder.com/data/icons/pet/500/hamster-512.png'/><span class='tooltip'><p class='animal'>" +animalnamestring+ "</p><p class=animalpopulation>" +animalnumberstring+ "</p></span></div>");
 
-      };
+              //
+              // $("div"){
+              //
+              // }
+              // $("img")
+              // .appendTo(".animal")
+              // .addClass("animal" + n)
+              // .attr("src", "https://cdn1.iconfinder.com/data/icons/pet/500/hamster-512.png")
+              //
+              // $("span")
+              // .appendTo("img")
+              // .addClass("tooltip")
+              // .append("p.animalpopulation")
+              // .append("p.animalname")
+              //
+              // $("p.animalpopulation")
+              // .html(animalnumberstring)
+              //
+              // $("div")
+              //   .addClass("animal")
+              //   .appendTo("#tier" + n)
+
+              // $("#tier" + n)
+              //   .append("div")
+              //   .addClass("animal")
+                //
+                // .append("<div class='animal'><img class='animal" +
+                // n + "' src='https://cdn1.iconfinder.com/data/icons/pet/500/hamster-512.png'/><span class='tooltip'><p class='animal'>" +
+                // animalnamestring+ "</p><p class=animalpopulation>" +animalnumberstring+ "</p></span></div>");
+
+              //
+              // $("<div>")
+              //   .addClass("animal")
+              //   .appendTo("<img>")
+              //     .addClass("animal")
+              //     .attr("src","https://cdn1.iconfinder.com/data/icons/pet/500/hamster-512.png")
+              //     .appendTo("<span>")
+              //       .addClass("tooltip")
+
+
+              // $("#tier" + n).append("<div class='animal'><img class='animal" + n + "' src='" +animalnamestring+ "'/><span class='tooltip'><p class='animal'>" +animalname+ "</p><p class=animalpopulation>" +animalnumber+ "</p></span></div>");
 
 
 
-  console.log();
+              }
+            }
+
+            };
 
 
-};
+        for(var j = 0; j<tierlimitsarray.length; j++){
+          var jminus = j - 1;
 
-for(var j = 0; j<tierlimitsarray.length; j++){
-  var jminus = j - 1;
+          if(j==0){
+            $("#tier" + j).append("<div class='axiswrapper'><div class='axis axismarkertop'> 1 billion +</div><div class='axis axismarkerbottom'>" + tierlimitsarray[j]+ "</div><div class='tiernumber'>" + j + "</div></div>");
 
-  if(j==0){
-    $("#tier" + j).append("<div class='axiswrapper'><div class='axis axismarkertop'> billion +</div><div class='axis axismarkerbottom'>" + tierlimitsarray[j]+ "</div><div class='tiernumber'>" + j + "</div></div>");
+          }
 
-  }
+        else{
+          $("#tier" + j).append("<div class='axiswrapper'><div class='axis axismarkertop'>" +tierlimitsarray[jminus]+ "</div><div class='axis axismarkerbottom'>" + tierlimitsarray[j]+ "</div><div class='tiernumber'>" + j + "</div></div>");
 
-else{
+        }
+
+        };
 
 
-  $("#tier" + j).append("<div class='axiswrapper'><div class='axis axismarkertop'>" +tierlimitsarray[jminus]+ "</div><div class='axis axismarkerbottom'>" + tierlimitsarray[j]+ "</div><div class='tiernumber'>" + j + "</div></div>");
-}
-};
 
     //Do something with the response
   },
@@ -109,14 +149,42 @@ body{
 }
 
 .animal{
+<<<<<<< HEAD
 margin:0 auto;
   width:7.5vw;
   display:inline-block;
+=======
+margin: 0 auto;
+  display:inline-block;
+  vertical-align:top;
+  text-align:center;
+}
+
+.animal img{
+  width:6vw;
+transition: all .3s ease-in-out;
+  -webkit-filter: blur(5px);
+filter: blur(5px);
+}
+
+.animal:hover span.tooltip{
+  display:block;
+}
+
+.animal:hover img{
+transform: scale(2);
+-webkit-filter: blur(0px);
+filter: blur(0px);
+}
+
+.tooltip{
+
+>>>>>>> master
 }
 
 .tier{
   width:80vw;
-  height:150px;
+  height:200px;
   text-align:center;
 }
 
@@ -132,6 +200,12 @@ margin:0 auto;
   float:right;
 }
 
+span.tooltip{
+  display:none;
+  position:absolute;
+}
+
+
 .axismarkertop{
 
   border-bottom: 1px solid black;
@@ -143,11 +217,14 @@ margin:0 auto;
 }
 
 .bar{
-  width:70vw;
-  height:25px;
+  text-align:center;
+  width:60vw;
+  margin-left:7vw;
+  height:15px;
   /*margin-left:vw;
   margin-right:15vw;*/
-  margin-bottom:100px;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
 }
 
 .bar p {
@@ -208,7 +285,9 @@ margin:0 auto;
   <div class="border" id="top"></div>
 
   <div class="pyramidwrapper">
-    <div class ="tier" id="tier0"><div class="animal">Humans : 7,000,000,000</div></div>
+    <div class ="tier" id="tier0"><div class="animal"><img class='animal0' src="https://cdn1.iconfinder.com/data/icons/pet/500/hamster-512.png"/>
+      <span class='tooltip'><p class='animal'>Humans</p>
+        <p class=animalpopulation>7,000,000,000</p></span></div></div>
     <div class ="tier" id="tier1"></div>
     <div class ="tier" id="tier2"></div>
     <div class ="tier" id="tier3"></div>
